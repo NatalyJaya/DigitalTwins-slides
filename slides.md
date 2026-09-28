@@ -45,7 +45,7 @@ transition: slide-left
     <div class="timeline-year">1970</div>
     <div class="timeline-dot"></div>
     <img
-      src="/public/Apolo13-Astronauts.jpg"
+      src="/Apolo13-Astronauts.jpg"
       class="timeline-image"
     />
     <p class="timeline-caption">
@@ -57,7 +57,7 @@ transition: slide-left
     <div class="timeline-year">2002</div>
     <div class="timeline-dot"></div>
     <img
-      src="/public/Michael-Grieves.jpg"
+      src="/Michael-Grieves.jpg"
       class="timeline-image"
     />
     <p class="timeline-caption">
@@ -69,7 +69,7 @@ transition: slide-left
     <div class="timeline-year">2010</div>
     <div class="timeline-dot"></div>
     <img
-      src="/public/John-Vickers.jpg"
+      src="/John-Vickers.jpg"
       class="timeline-image"
     />
     <p class="timeline-caption">
@@ -982,49 +982,42 @@ layout: section
 # ① Anatomical Twinning
 
 <div class="grid grid-cols-2 gap-8 mt-6 text-center items-stretch">
-  <div v-click.fade-in class="p-4 rounded-xl bg-blue-500/15 border border-blue-500/40 flex flex-col justify-between
-           transition-all duration-700 ease-out
-           hover:scale-[1.03] hover:shadow-lg hover:shadow-blue-500/10"
-  >
-    <div>
-      <div class="overflow-hidden rounded mb-3">
-        <img
-          src="/public/segmentation.png"
-          class="h-40 mx-auto object-contain transition-transform duration-700 hover:scale-105"
-        />
-      </div>
-      <b class="block mt-1 text-blue-400
-                animate-[fadeIn_0.8s_ease-out]">
-        Segmentation
-      </b>
-      <p class="text-s opacity-80 mt-2">
-        Like colouring-in a scan: a CNN traces outlines and separates tissue
-        from cavities. Then it is corrected manually.
-      </p>
-    </div>
-  </div>
+  <!-- SEGMENTATION -->
   <div
     v-click.fade-in
-    class="p-4 rounded-xl bg-emerald-500/15 border border-emerald-500/40
+    class="p-4 rounded-xl bg-blue-500/15 border border-blue-500/40
            flex flex-col justify-between
            transition-all duration-700 ease-out
-           hover:scale-[1.03] hover:shadow-lg hover:shadow-emerald-500/10
-           animate-[slideIn_0.8s_ease-out]"
+           hover:scale-[1.03] hover:shadow-lg
+           hover:shadow-blue-500/10"
   >
     <div>
       <div class="overflow-hidden rounded mb-3">
-        <img
-          src="/public/meshing.png"
-          class="h-40 mx-auto object-contain transition-transform duration-700 hover:scale-105"
-        />
+        <Torax3D />
       </div>
-      <b class="block mt-1 text-emerald-400">
-        Meshing
+      <b class="block mt-1 text-3xl text-blue-400">
+        Segmentation
       </b>
-      <p class="text-s opacity-80 mt-2">
-        Like the wireframe of a 3D character: the outlines become a 3D mesh,
-        using <b>UVC</b>, the "GPS" of the heart's regions.
-      </p>
+    </div>
+  </div>
+  <!-- 3D HEART -->
+  <div
+    v-click.fade-in
+    class="p-4 rounded-xl bg-emerald-500/15
+           border border-emerald-500/40
+           flex flex-col justify-between
+           transition-all duration-700 ease-out
+           hover:scale-[1.03]
+           hover:shadow-lg
+           hover:shadow-emerald-500/10"
+  >
+    <div>
+      <div class="overflow-hidden rounded mb-6 h-78 bg-black/20">
+        <Heart3D />
+      </div>
+      <b class="block mt-1 text-3xl text-emerald-400">
+        3D Reconstruction
+      </b>
     </div>
   </div>
 </div>
@@ -1033,44 +1026,23 @@ layout: section
   class="mt-3 text-center text-lg
          animate-[fadeInUp_0.8s_ease-out]"
 >
-  <span class="inline-block animate-pulse">➜</span>
-  <b class="text-emerald-500">Result:</b>
+  <span class="inline-block animate-pulse">
+    ➜
+  </span>
+  <b class="text-emerald-500">
+    Result:
+  </b>
   a patient-specific 3D model of the heart
-</div>
-<div
-  class="absolute bottom-1 right-6 text-xs opacity-50
-         transition-opacity duration-500 hover:opacity-100"
->
-  Figure adapted from the source paper
 </div>
 
 
 <style>
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
 @keyframes fadeInUp {
   from {
     opacity: 0;
     transform: translateY(15px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1242,7 +1214,9 @@ layout: section
 
 <!-- ============ 05 CLINICAL CASE ============ -->
 
-<div class="text-7xl font-800 bg-gradient-to-r from-emerald-500 to-amber-500 bg-clip-text text-transparent leading-none">05</div>
+<div class="text-7xl font-800 bg-gradient-to-r from-emerald-500 to-amber-500 bg-clip-text text-transparent leading-none">
+  05
+</div>
 
 # CLINICAL CASE
 
