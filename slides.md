@@ -37,12 +37,131 @@ transition: slide-left
 ---
 
 # From Apollo 13 to Digital Twins
-
-<div class="grid grid-cols-3 gap-6 mt-6">
-<div v-click class="text-center transition-all duration-700 transform hover:scale-105"> <div class="text-amber-500 font-bold mb-2">1970</div> <img src="/public/Apolo13-Astronauts.jpg" class="w-full h-56 object-cover rounded-lg shadow-xl border border-white/10" /> <p class="text-sm opacity-60 mt-3"> Fig. 1 · Apollo 13 crew. Source: El Litoral </p> </div>
-<div v-click class="text-center transition-all duration-700 transform hover:scale-105"> <div class="text-amber-500 font-bold mb-2">2002</div> <img src="/public/Michael-Grieves.jpg" class="w-full h-56 object-cover rounded-lg shadow-xl border border-white/10" /> <p class="text-sm opacity-60 mt-3"> Fig. 2 · Michael Grieves at Marshall Space Flight Center  </p> </div>
-<div v-click class="text-center transition-all duration-700 transform hover:scale-105"> <div class="text-amber-500 font-bold mb-2">2010</div> <img src="/public/John-Vickers.jpg" class="w-full h-56 object-cover rounded-lg shadow-xl border border-white/10" /> <p class="text-sm opacity-60 mt-3"> Fig. 3 · John Vickers during a visit to Marshall. Source: NASA/MSFC </p> </div>
+<div class="timeline">
+  <!-- Timeline line -->
+  <div class="timeline-line"></div>
+  <!-- 1970 -->
+  <div v-click.fade-in class="timeline-item">
+    <div class="timeline-year">1970</div>
+    <div class="timeline-dot"></div>
+    <img
+      src="/public/Apolo13-Astronauts.jpg"
+      class="timeline-image"
+    />
+    <p class="timeline-caption">
+      Fig. 1 · Apollo 13 crew. Source: El Litoral
+    </p>
+  </div>
+  <!-- 2002 -->
+  <div v-click.fade-in class="timeline-item">
+    <div class="timeline-year">2002</div>
+    <div class="timeline-dot"></div>
+    <img
+      src="/public/Michael-Grieves.jpg"
+      class="timeline-image"
+    />
+    <p class="timeline-caption">
+      Fig. 2 · Michael Grieves at Marshall Space Flight Center
+    </p>
+  </div>
+  <!-- 2010 -->
+  <div v-click.fade-in class="timeline-item">
+    <div class="timeline-year">2010</div>
+    <div class="timeline-dot"></div>
+    <img
+      src="/public/John-Vickers.jpg"
+      class="timeline-image"
+    />
+    <p class="timeline-caption">
+      Fig. 3 · John Vickers during a visit to Marshall. Source: NASA/MSFC
+    </p>
+  </div>
 </div>
+
+<style>
+.timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  margin-top: 2rem;
+  padding-top: 2.2rem;
+}
+
+/* Horizontal timeline */
+.timeline-line {
+  position: absolute;
+  top: 1.15rem;
+  left: 8%;
+  right: 8%;
+  height: 2px;
+  background: rgba(245, 158, 11, 0.35);
+}
+
+/* Each milestone */
+.timeline-item {
+  position: relative;
+  text-align: center;
+}
+
+/* Year */
+.timeline-year {
+  color: #f59e0b;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.7rem;
+}
+
+/* Dot on the timeline */
+.timeline-dot {
+  position: absolute;
+  top: -1.35rem;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+
+  background: #f59e0b;
+  border: 2px solid #1a1a1a;
+
+  box-shadow:
+    0 0 7px rgba(245, 158, 11, 0.7);
+}
+
+/* Images */
+.timeline-image {
+  width: 100%;
+  height: 13rem;
+  object-fit: cover;
+  border-radius: 0.6rem;
+
+  border: 1px solid rgba(255,255,255,0.10);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.25);
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.timeline-image:hover {
+  transform: scale(1.03);
+
+  box-shadow:
+    0 12px 35px rgba(245,158,11,0.20);
+}
+
+/* Caption */
+.timeline-caption {
+  font-size: 0.72rem;
+  opacity: 0.55;
+  margin-top: 0.7rem;
+  line-height: 1.4;
+}
+</style>
 
 ---
 layout: section
@@ -133,22 +252,36 @@ A virtual representation of a human or system, <b class="text-amber-500">constan
 # Simulation vs. Digital Twin
 
 <div class="grid grid-cols-2 gap-8 mt-8">
-
-  <div v-click.fade-in class="p-6 rounded-xl border border-gray-500/40 bg-gray-500/10">
-    <div class="text-sm uppercase tracking-widest opacity-60">Simulation</div>
-    <div class="text-3xl font-bold my-4">“How <span class="text-amber-500">should</span> it work?”</div>
+  <div
+    v-click.fade-in
+    class="p-6 rounded-xl border border-gray-500/40 bg-gray-500/10"
+  >
+    <div class="text-sm uppercase tracking-widest opacity-60">
+      Simulation
+    </div>
+    <div class="text-3xl font-bold my-4">
+      “How <span class="text-amber-500">should</span> it work?”
+    </div>
     <ul class="text-lg opacity-80">
       <li>Predefined scenarios</li>
       <li>Static snapshots in time</li>
     </ul>
   </div>
-
-  <div v-click.fade-in class="p-6 rounded-xl border border-emerald-500/60 bg-emerald-500/10">
+  <div
+    v-click.fade-in
+    class="digital-twin-card p-6 rounded-xl border border-emerald-500/60 bg-emerald-500/10"
+  >
     <div class="flex items-center justify-between">
-      <div class="text-sm uppercase tracking-widest opacity-60">Digital Twin</div>
-      <div class="live text-xs font-bold px-2 py-1 rounded bg-red-500 text-white">● LIVE</div>
+      <div class="text-sm uppercase tracking-widest opacity-60">
+        Digital Twin
+      </div>
+      <div class="live text-xs font-bold px-2 py-1 rounded bg-red-500 text-white">
+        ● LIVE
+      </div>
     </div>
-    <div class="text-3xl font-bold my-4">“How <span class="text-emerald-500">is</span> it working?”</div>
+    <div class="text-3xl font-bold my-4">
+      “How <span class="text-emerald-500">is</span> it working?”
+    </div>
     <ul class="text-lg opacity-80">
       <li>Active representation</li>
       <li>Real-time data</li>
@@ -157,8 +290,33 @@ A virtual representation of a human or system, <b class="text-amber-500">constan
 </div>
 
 <style>
-.live { animation: blink 1.2s ease-in-out infinite; }
-@keyframes blink { 50% { opacity: .35; } }
+/* Digital Twin — emerald breathing glow */
+.digital-twin-card {
+  animation: digitalTwinGlow 1.6s ease-in-out infinite;
+}
+
+@keyframes digitalTwinGlow {
+  0%, 100% {
+    box-shadow:
+      0 0 4px rgba(16, 185, 129, 0.25);
+  }
+
+  50% {
+    box-shadow:
+      0 0 18px rgba(16, 185, 129, 0.75);
+  }
+}
+
+/* LIVE indicator */
+.live {
+  animation: blink 1.2s ease-in-out infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: .35;
+  }
+}
 </style>
 
 ---
@@ -389,13 +547,74 @@ layout: section
 ---
 
 # Artificial Pancreas
- 
-<p class="opacity-70 -mt-2">One of the first digital twin-like systems: the artificial pancreas. Two essential parts:</p>
+<p class="opacity-70 -mt-2">
+  One of the first digital twin-like systems: the artificial pancreas. Two essential parts:
+</p>
 <div class="flex items-center justify-center gap-4 mt-10 text-center">
-  <div v-click class="p-5 rounded-xl bg-emerald-500/20 border border-emerald-500/50 w-64"><div class="text-xs opacity-60">PART 1</div><div class="text-4xl">🩸</div><b>Measures glucose</b><div class="text-sm opacity-70">continuously</div></div>
+  <div
+    v-click.fade-in
+    class="pancreas-card pancreas-green p-5 rounded-xl w-64"
+  >
+    <div class="text-xs opacity-60">PART 1</div>
+    <div class="text-4xl">🩸</div>
+    <b>Measures glucose</b>
+    <div class="text-sm opacity-70">continuously</div>
+  </div>
   <div v-click class="text-3xl">→</div>
-  <div v-click class="p-5 rounded-xl bg-amber-500/20 border border-amber-500/50 w-64"><div class="text-xs opacity-60">PART 2</div><div class="text-4xl">💉</div><b>Infuses insulin</b><div class="text-sm opacity-70">syringe device, only when needed</div></div>
+  <div
+    v-click.fade-in
+    class="pancreas-card pancreas-amber p-5 rounded-xl w-64"
+  >
+    <div class="text-xs opacity-60">PART 2</div>
+    <div class="text-4xl">💉</div>
+    <b>Infuses insulin</b>
+    <div class="text-sm opacity-70">syringe device, only when needed</div>
+  </div>
 </div>
+
+<style>
+.pancreas-card {
+  border: 1px solid;
+}
+
+/* Emerald — glucose */
+.pancreas-green {
+  background: rgba(16, 185, 129, 0.20);
+  border-color: rgba(16, 185, 129, 0.50);
+  animation: greenGlow 1.6s ease-in-out infinite;
+}
+
+/* Amber — insulin */
+.pancreas-amber {
+  background: rgba(245, 158, 11, 0.20);
+  border-color: rgba(245, 158, 11, 0.50);
+  animation: amberGlow 1.6s ease-in-out infinite;
+}
+
+@keyframes greenGlow {
+  0%, 100% {
+    box-shadow:
+      0 0 4px rgba(16, 185, 129, 0.35);
+  }
+
+  50% {
+    box-shadow:
+      0 0 18px rgba(16, 185, 129, 0.85);
+  }
+}
+
+@keyframes amberGlow {
+  0%, 100% {
+    box-shadow:
+      0 0 4px rgba(245, 158, 11, 0.35);
+  }
+
+  50% {
+    box-shadow:
+      0 0 18px rgba(245, 158, 11, 0.85);
+  }
+}
+</style>
 
 ---
 
@@ -648,26 +867,114 @@ layout: section
 
 ---
 
- 
 # Cardiac Digital Twins
  
 <div class="grid grid-cols-2 gap-10 items-center mt-4">
   <div class="text-center">
     <div class="beat text-9xl">❤️</div>
-    <svg viewBox="0 0 240 60" class="w-full"><path class="ecg" d="M0 30 H40 l6 -8 l6 8 H80 l5 8 l7 -38 l7 46 l5 -16 H140 q12 -18 26 0 H240" fill="none" stroke="#ef4444" stroke-width="2.5"/></svg>
+    <svg viewBox="0 0 240 60" class="w-full">
+      <path
+        class="ecg"
+        d="M0 30 H40 l6 -8 l6 8 H80 l5 8 l7 -38 l7 46 l5 -16 H140 q12 -18 26 0 H240"
+        fill="none"
+        stroke="#ef4444"
+        stroke-width="2.5"
+      />
+    </svg>
   </div>
+
   <div class="text-lg">
-    <p>Digital twins built on <b>models of cardiac electrophysiology</b>.</p>
-    <p class="text-amber-500 font-bold">Goal: test and optimise personalised monitoring and treatment strategies, safely and in real time.</p>
-    <div v-click class="mt-4 p-3 rounded-lg bg-emerald-500/15 border border-emerald-500/40">① <b>Anatomical twinning</b><br><span class="text-sm opacity-70">a 3D copy of the patient's heart</span></div>
-    <div v-click class="mt-3 p-3 rounded-lg bg-amber-500/15 border border-amber-500/40">② <b>Functional twinning</b><br><span class="text-sm opacity-70">simulating how it works electrically</span></div>
+    <p>
+      Digital twins built on <b>models of cardiac electrophysiology</b>.
+    </p>
+    <p class="text-amber-500 font-bold">
+      Goal: test and optimise personalised monitoring and treatment strategies,
+      safely and in real time.
+    </p>
+    <div
+      v-click
+      class="card-twin anatomical-twin mt-4 p-3 rounded-lg"
+    >
+      ① <b>Anatomical twinning</b><br>
+      <span class="text-sm opacity-70">
+        a 3D copy of the patient's heart
+      </span>
+    </div>
+    <div
+      v-click
+      class="card-twin functional-twin mt-3 p-3 rounded-lg"
+    >
+      ② <b>Functional twinning</b><br>
+      <span class="text-sm opacity-70">
+        simulating how it works electrically
+      </span>
+    </div>
   </div>
 </div>
+
 <style>
-.beat { display: inline-block; animation: beat 1.2s ease-in-out infinite; }
-@keyframes beat { 0%,100% { transform: scale(1); } 15% { transform: scale(1.22); } 30% { transform: scale(1); } 45% { transform: scale(1.12); } }
-.ecg { stroke-dasharray: 420; stroke-dashoffset: 420; animation: draw 2.4s linear infinite; }
-@keyframes draw { to { stroke-dashoffset: 0; } }
+.beat {
+  display: inline-block;
+  animation: beat 1.2s ease-in-out infinite;
+}
+
+@keyframes beat {
+  0%,100% {
+    transform: scale(1);
+  }
+
+  15% {
+    transform: scale(1.22);
+  }
+
+  30% {
+    transform: scale(1);
+  }
+
+  45% {
+    transform: scale(1.12);
+  }
+}
+
+.ecg {
+  stroke-dasharray: 420;
+  stroke-dashoffset: 420;
+  animation: draw 2.4s linear infinite;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+
+/* Base de las dos cajas */
+.card-twin {
+  border: 1px solid;
+}
+
+
+/* Anatomical — emerald */
+.anatomical-twin {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.40);
+
+  box-shadow:
+    0 0 8px rgba(16, 185, 129, 0.35),
+    0 0 18px rgba(16, 185, 129, 0.18);
+}
+
+
+/* Functional — amber */
+.functional-twin {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.40);
+
+  box-shadow:
+    0 0 8px rgba(245, 158, 11, 0.35),
+    0 0 18px rgba(245, 158, 11, 0.18);
+}
 </style>
  
 ---
@@ -776,35 +1083,157 @@ layout: section
 # ② Functional Twinning
  
 <div class="grid grid-cols-3 gap-6 mt-4 text-center">
-  <div v-click.fade-in class="p-4 rounded-xl bg-blue-500/15 border border-blue-500/40">
-    <div class="text-4xl"></div><b class="block mt-1">Reference frame</b>
+  <div v-click.fade-in class="functional-card functional-blue p-4 rounded-xl bg-blue-500/15 border border-blue-500/40">
+    <div class="text-4xl"></div>
+    <b class="block mt-1">Reference frame</b>
     <p class="text-sm opacity-70">A standard coordinate system laid over each patient's anatomy, like fitting the same map grid to every heart.</p>
   </div>
-  <div v-click.fade-in class="p-4 rounded-xl bg-purple-500/15 border border-purple-500/40">
-    <div class="text-4xl"></div><b class="block mt-1">Feature vector</b>
+  <div v-click.fade-in class="functional-card functional-purple p-4 rounded-xl bg-purple-500/15 border border-purple-500/40">
+    <div class="text-4xl"></div>
+    <b class="block mt-1">Feature vector</b>
     <p class="text-sm opacity-70">The heart's "ID card": its geometry and anatomy as numbers the model can process.</p>
   </div>
-  <div v-click.fade-in class="p-4 rounded-xl bg-amber-500/15 border border-amber-500/40">
-    <div class="text-4xl"></div><b class="block mt-1">Forward ECG model</b>
+  <div v-click.fade-in class="functional-card functional-amber p-4 rounded-xl bg-amber-500/15 border border-amber-500/40">
+    <div class="text-4xl"></div>
+    <b class="block mt-1">Forward ECG model</b>
     <p class="text-sm opacity-70">Maths that predicts the ECG the patient <i>should</i> show: y<sub>s</sub>(t) = f(ω, t)</p>
   </div>
 </div>
-<div v-click.fade-in class="mt-6 p-4 rounded-xl border border-dashed border-gray-500/60 text-center">
+<div v-click.fade-in class="functional-result mt-6 p-4 rounded-xl border border-dashed border-gray-500/60 text-center">
   <div class="flex items-center justify-center gap-4 text-sm">
-    <div>Real 12-lead ECG<br>y<sub>m</sub>(t)
-      <svg viewBox="0 0 120 40" class="w-32"><path class="ecg2" d="M0 20 H20 l4 -5 l4 5 H45 l3 5 l4 -25 l4 30 l3 -10 H85 q8 -12 17 0 H120" fill="none" stroke="#22c55e" stroke-width="2"/></svg></div>
+    <div>
+      Real 12-lead ECG<br>y<sub>m</sub>(t)
+      <svg viewBox="0 0 120 40" class="w-32">
+        <path class="ecg2" d="M0 20 H20 l4 -5 l4 5 H45 l3 5 l4 -25 l4 30 l3 -10 H85 q8 -12 17 0 H120"
+          fill="none" stroke="#22c55e" stroke-width="2"/>
+      </svg>
+    </div>
     <div class="text-2xl">⇄</div>
-    <div>Simulated ECG<br>y<sub>s</sub>(t)
-      <svg viewBox="0 0 120 40" class="w-32"><path class="ecg2" d="M0 20 H20 l4 -5 l4 5 H45 l3 5 l4 -25 l4 30 l3 -10 H85 q8 -12 17 0 H120" fill="none" stroke="#ef4444" stroke-width="2"/></svg></div>
+    <div>
+      Simulated ECG<br>y<sub>s</sub>(t)
+      <svg viewBox="0 0 120 40" class="w-32">
+        <path class="ecg2" d="M0 20 H20 l4 -5 l4 5 H45 l3 5 l4 -25 l4 30 l3 -10 H85 q8 -12 17 0 H120"
+          fill="none" stroke="#ef4444" stroke-width="2"/>
+      </svg>
+    </div>
     <div class="text-2xl">→</div>
-    <div class="text-left">Compare the error <b>L</b>(y<sub>m</sub>, y<sub>s</sub>)<br><span class="tune"> adjust parameters and repeat</span><br></div>
+    <div class="text-left">
+      Compare the error <b>L</b>(y<sub>m</sub>, y<sub>s</sub>)<br>
+      <span class="tune">adjust parameters and repeat</span><br>
+    </div>
   </div>
 </div>
+
 <style>
-.ecg2 { stroke-dasharray: 260; stroke-dashoffset: 260; animation: draw2 2s linear infinite; }
-@keyframes draw2 { to { stroke-dashoffset: 0; } }
-.tune { display: inline-block; animation: wob 1s ease-in-out infinite; }
-@keyframes wob { 50% { transform: rotate(-12deg); } }
+
+.functional-card {
+  animation-duration: 0.8s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+.functional-blue {
+  animation-name: blueFunctionalGlow;
+}
+
+@keyframes blueFunctionalGlow {
+  0% {
+    box-shadow: 0 0 0 rgba(59,130,246,0);
+  }
+  40% {
+    box-shadow:
+      0 0 18px rgba(59,130,246,.55),
+      0 0 35px rgba(59,130,246,.25);
+  }
+  100% {
+    box-shadow:
+      0 0 6px rgba(59,130,246,.22);
+  }
+}
+
+/* Purple */
+.functional-purple {
+  animation-name: purpleFunctionalGlow;
+}
+
+@keyframes purpleFunctionalGlow {
+  0% {
+    box-shadow: 0 0 0 rgba(168,85,247,0);
+  }
+  40% {
+    box-shadow:
+      0 0 18px rgba(168,85,247,.55),
+      0 0 35px rgba(168,85,247,.25);
+  }
+  100% {
+    box-shadow:
+      0 0 6px rgba(168,85,247,.22);
+  }
+}
+
+/* Amber */
+.functional-amber {
+  animation-name: amberFunctionalGlow;
+}
+
+@keyframes amberFunctionalGlow {
+  0% {
+    box-shadow: 0 0 0 rgba(245,158,11,0);
+  }
+  40% {
+    box-shadow:
+      0 0 18px rgba(245,158,11,.60),
+      0 0 35px rgba(245,158,11,.28);
+  }
+  100% {
+    box-shadow:
+      0 0 6px rgba(245,158,11,.22);
+  }
+}
+
+
+.functional-result {
+  animation: resultGlow .8s ease-out forwards;
+}
+
+@keyframes resultGlow {
+  0% {
+    box-shadow: 0 0 0 rgba(255,255,255,0);
+  }
+  40% {
+    box-shadow:
+      0 0 16px rgba(255,255,255,.20),
+      0 0 30px rgba(255,255,255,.08);
+  }
+  100% {
+    box-shadow:
+      0 0 5px rgba(255,255,255,.08);
+  }
+}
+
+
+.ecg2 {
+  stroke-dasharray: 260;
+  stroke-dashoffset: 260;
+  animation: draw2 2s linear infinite;
+}
+
+@keyframes draw2 {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.tune {
+  display: inline-block;
+  animation: wob 1s ease-in-out infinite;
+}
+
+@keyframes wob {
+  50% {
+    transform: rotate(-12deg);
+  }
+}
 </style>
 
 ---
@@ -822,26 +1251,68 @@ layout: section
 # A bodybuilder's sudden collapse
  
 <div class="grid grid-cols-2 gap-8 mt-4 text-center">
-  <div class="p-4 rounded-xl bg-emerald-500/15 border border-emerald-500/50">
+  <div v-click.fade class="p-4 rounded-xl bg-emerald-500/15 border border-emerald-500/50">
     <div class="text-xs uppercase tracking-widest opacity-60">What we see</div>
-    <div class="text-6xl my-1">💪</div><b>Peak physical condition</b>
+    <div class="text-6xl my-1">💪</div>
+    <b>Peak physical condition</b>
   </div>
-  <div v-click class="p-4 rounded-xl bg-red-500/15 border border-red-500/60 alarm">
+  <div v-click.fade class="p-4 rounded-xl bg-red-500/15 border border-red-500/60 alarm fade-glow-red">
     <div class="text-xs uppercase tracking-widest opacity-60">What was hidden</div>
-    <div class="text-6xl my-1">❤️‍🔥</div><b>An undetected cardiac condition</b>
+    <div class="text-6xl my-1">❤️‍🔥</div>
+    <b>An undetected cardiac condition</b>
   </div>
 </div>
 <div class="grid grid-cols-3 gap-4 mt-5 text-center text-sm">
-  <div v-click class="p-3 rounded-lg bg-gray-500/15"> <b>Looking fit ≠ a healthy heart</b></div>
-  <div v-click class="p-3 rounded-lg bg-gray-500/15"> <b>Extreme exercise on a diseased heart can be lethal</b></div>
-  <div v-click class="p-3 rounded-lg bg-gray-500/15"> <b>Simple, cheap prevention: an ECG</b></div>
+  <div v-click.fade class="p-3 rounded-lg bg-gray-500/15 fade-glow">
+    <b>Looking fit ≠ a healthy heart</b>
+  </div>
+  <div v-click.fade class="p-3 rounded-lg bg-gray-500/15 fade-glow">
+    <b>Extreme exercise on a diseased heart can be lethal</b>
+  </div>
+  <div v-click.fade class="p-3 rounded-lg bg-gray-500/15 fade-glow">
+    <b>Simple, cheap prevention: an ECG</b>
+  </div>
 </div>
-<div v-click class="mt-5 p-3 rounded-lg bg-amber-500 text-black text-center font-bold">
-Cardiac Digital Twins could predict fatal arrhythmias <i>in silico</i>, before they happen in real life.
+<div
+  v-click.fade
+  class="reflection-box mt-5 p-3 rounded-lg bg-amber-500 text-black text-center font-bold"
+>
+  Cardiac Digital Twins could predict fatal arrhythmias
+  <i>in silico</i>, before they happen in real life.
 </div>
+
 <style>
-.alarm { animation: glow 1.4s ease-in-out infinite; }
-@keyframes glow { 50% { box-shadow: 0 0 22px #ef4444aa; } }
+
+.fade-glow {
+  animation: subtleGlow 0.8s ease-out forwards;
+}
+
+@keyframes subtleGlow {
+  0% {
+    box-shadow: 0 0 0 rgba(255,255,255,0);
+  }
+
+  100% {
+    box-shadow: 0 0 10px rgba(255,255,255,0.12);
+  }
+}
+
+.alarm {
+  animation: glow 1.4s ease-in-out infinite;
+}
+
+@keyframes glow {
+  50% {
+    box-shadow: 0 0 22px #ef4444aa;
+  }
+}
+
+.reflection-box {
+  box-shadow:
+    0 0 8px rgba(245, 158, 11, 0.65),
+    0 0 22px rgba(245, 158, 11, 0.35);
+}
+
 </style>
 
 ---
@@ -859,23 +1330,123 @@ layout: section
 # Four walls to climb
  
 <div class="grid grid-cols-2 gap-5 mt-4 text-sm">
-  <div v-click class="p-4 mt-1 rounded-xl bg-blue-500/15 border-l-4 border-blue-500">
- <div class="text-3xl"> <b class="mt-1 text-lg align-middle">Biological knowledge</b></div>
-    <p class="opacity-80">We still have incomplete knowledge of human biology.</p>
+  <div v-click.fade class="wall-card wall-blue p-4 mt-1 rounded-xl bg-blue-500/15 border-l-4 border-blue-500">
+    <div class="text-3xl">
+      <b class="mt-1 text-lg align-middle">Biological knowledge</b>
+    </div>
+    <p class="opacity-80">
+      We still have incomplete knowledge of human biology.
+    </p>
   </div>
-  <div v-click class="p-4 rounded-xl bg-emerald-500/15 border-l-4 border-emerald-500">
-    <div class="text-3xl"> <b class="text-lg align-middle">Data</b></div>
-    <p class="opacity-80">Enough quantity <i>and</i> quality: heterogeneous sources, and continuous non-invasive collection is still in development or too noisy.</p>
+  <div v-click.fade class="wall-card wall-green p-4 rounded-xl bg-emerald-500/15 border-l-4 border-emerald-500">
+    <div class="text-3xl">
+      <b class="text-lg align-middle">Data</b>
+    </div>
+    <p class="opacity-80">
+      Enough quantity <i>and</i> quality: heterogeneous sources, and continuous
+      non-invasive collection is still in development or too noisy.
+    </p>
   </div>
-  <div v-click class="p-4 rounded-xl bg-amber-500/15 border-l-4 border-amber-500">
-    <div class="text-3xl"> <b class="text-lg align-middle">Computing</b></div>
-    <p class="opacity-80">Heavy image-processing load, a segmentation bottleneck and a lack of automation.</p>
+  <div v-click.fade class="wall-card wall-amber p-4 rounded-xl bg-amber-500/15 border-l-4 border-amber-500">
+    <div class="text-3xl">
+      <b class="text-lg align-middle">Computing</b>
+    </div>
+    <p class="opacity-80">
+      Heavy image-processing load, a segmentation bottleneck and a lack of automation.
+    </p>
   </div>
-  <div v-click class="p-4 rounded-xl bg-red-500/15 border-l-4 border-red-500">
-    <div class="text-3xl"> <b class="text-lg align-middle">Privacy & security</b></div>
-    <p class="opacity-80">Regulation is needed. Who controls the twin? Who owns it? What can be done with it?</p>
+  <div v-click.fade class="wall-card wall-red p-4 rounded-xl bg-red-500/15 border-l-4 border-red-500">
+    <div class="text-3xl">
+      <b class="text-lg align-middle">Privacy & security</b>
+    </div>
+    <p class="opacity-80">
+      Regulation is needed. Who controls the twin? Who owns it? What can be done with it?
+    </p>
   </div>
 </div>
+
+<style>
+
+/* Base */
+.wall-card {
+  animation-duration: 0.8s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+
+/* Blue */
+.wall-blue {
+  animation-name: blueGlow;
+}
+
+@keyframes blueGlow {
+  0% {
+    box-shadow: 0 0 0 rgba(59, 130, 246, 0);
+  }
+  40% {
+    box-shadow: 0 0 16px rgba(59, 130, 246, 0.30);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.08);
+  }
+}
+
+
+/* Green */
+.wall-green {
+  animation-name: greenGlow;
+}
+
+@keyframes greenGlow {
+  0% {
+    box-shadow: 0 0 0 rgba(16, 185, 129, 0);
+  }
+  40% {
+    box-shadow: 0 0 16px rgba(16, 185, 129, 0.30);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(16, 185, 129, 0.08);
+  }
+}
+
+
+/* Amber */
+.wall-amber {
+  animation-name: amberGlow;
+}
+
+@keyframes amberGlow {
+  0% {
+    box-shadow: 0 0 0 rgba(245, 158, 11, 0);
+  }
+  40% {
+    box-shadow: 0 0 16px rgba(245, 158, 11, 0.30);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(245, 158, 11, 0.08);
+  }
+}
+
+
+/* Red */
+.wall-red {
+  animation-name: redGlow;
+}
+
+@keyframes redGlow {
+  0% {
+    box-shadow: 0 0 0 rgba(239, 68, 68, 0);
+  }
+  40% {
+    box-shadow: 0 0 16px rgba(239, 68, 68, 0.30);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(239, 68, 68, 0.08);
+  }
+}
+
+</style>
 
 ---
 layout: section
@@ -891,19 +1462,86 @@ layout: section
 layout: center
 class: text-center
 ---
- 
+
 # A turning point in modern medicine
  
 <div class="mt-10 flex flex-col gap-8 text-4xl font-bold">
   <div class="flex items-center justify-center gap-6">
-    <span class="opacity-70">Curative</span>
+    <span class="text-glow-emerald">Curative</span>
     <span class="opacity-50">→</span>
-    <span v-click class="text-emerald-500">Preventive</span>
+    <span
+      v-click.fade
+      class="text-emerald-500 glow-emerald"
+    >
+      Preventive
+    </span>
   </div>
   <div class="flex items-center justify-center gap-6">
     <span class="opacity-70">Generalised</span>
     <span class="opacity-50">→</span>
-    <span v-click class="text-amber-500">Personalised</span>
+    <span
+      v-click.fade
+      class="text-amber-500 glow-amber"
+    >
+      Personalised
+    </span>
   </div>
 </div>
-<div v-click class="mt-10 text-xl opacity-80">A big step: medicine that anticipates instead of reacting.</div>
+<div v-click.fade class="mt-10 text-xl opacity-80">
+  A big step: medicine that anticipates instead of reacting.
+</div>
+
+
+<style>
+@keyframes glowEmerald {
+  0% {
+    opacity: 0;
+    text-shadow: 0 0 0 transparent;
+  }
+
+  50% {
+    opacity: 1;
+    text-shadow:
+      0 0 8px rgba(16, 185, 129, 0.8),
+      0 0 20px rgba(16, 185, 129, 0.5),
+      0 0 40px rgba(16, 185, 129, 0.25);
+  }
+
+  100% {
+    opacity: 1;
+    text-shadow:
+      0 0 5px rgba(16, 185, 129, 0.5),
+      0 0 12px rgba(16, 185, 129, 0.25);
+  }
+}
+
+@keyframes glowAmber {
+  0% {
+    opacity: 0;
+    text-shadow: 0 0 0 transparent;
+  }
+
+  50% {
+    opacity: 1;
+    text-shadow:
+      0 0 8px rgba(245, 158, 11, 0.8),
+      0 0 20px rgba(245, 158, 11, 0.5),
+      0 0 40px rgba(245, 158, 11, 0.25);
+  }
+
+  100% {
+    opacity: 1;
+    text-shadow:
+      0 0 5px rgba(245, 158, 11, 0.5),
+      0 0 12px rgba(245, 158, 11, 0.25);
+  }
+}
+
+.glow-emerald {
+  animation: glowEmerald 1.2s ease-out forwards;
+}
+
+.glow-amber {
+  animation: glowAmber 1.2s ease-out forwards;
+}
+</style>
