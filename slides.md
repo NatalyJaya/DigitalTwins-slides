@@ -992,7 +992,7 @@ layout: section
            hover:shadow-blue-500/10"
   >
     <div>
-      <div class="overflow-hidden rounded mb-3">
+      <div class="overflow-hidden rounded mb-6 h-58 bg-black/20">
         <Torax3D />
       </div>
       <b class="block mt-1 text-3xl text-blue-400">
@@ -1012,7 +1012,7 @@ layout: section
            hover:shadow-emerald-500/10"
   >
     <div>
-      <div class="overflow-hidden rounded mb-6 h-78 bg-black/20">
+      <div class="overflow-hidden rounded mb-6 h-58 bg-black/20">
         <Heart3D />
       </div>
       <b class="block mt-1 text-3xl text-emerald-400">
@@ -1023,7 +1023,7 @@ layout: section
 </div>
 <div
   v-click.fade-in
-  class="mt-3 text-center text-lg
+  class="mt-8 text-center text-lg
          animate-[fadeInUp_0.8s_ease-out]"
 >
   <span class="inline-block animate-pulse">

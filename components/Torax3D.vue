@@ -45,10 +45,10 @@ function normalizeModel(object: THREE.Object3D) {
   const centered = new THREE.Box3().setFromObject(object)
   const center = centered.getCenter(new THREE.Vector3())
   object.position.set(
-  -center.x,
-  -center.y,
-  -center.z
-)
+    -center.x,
+    -center.y,
+    -center.z
+  )
   object.position.sub(center)
   object.updateMatrixWorld(true)
 
@@ -63,7 +63,6 @@ function normalizeModel(object: THREE.Object3D) {
     }
   })
 }
-
 
 function fitCamera() {
   if (!camera || !model)
@@ -81,10 +80,10 @@ function fitCamera() {
   const vFov = THREE.MathUtils.degToRad(camera.fov)
   const distV = radius / Math.sin(vFov / 2)
   const distH = radius / Math.sin(Math.atan(Math.tan(vFov / 2) * camera.aspect))
-  const distance = Math.max(distV, distH) * 1.15
+  
+  const distance = Math.max(distV, distH) * 0.7
 
-  camera.position.set(0.06,1,1
-    )
+  camera.position.set(0.06, 1, distance)
   camera.lookAt(sphere.center)
   controls?.target.copy(sphere.center)
   controls?.update()
@@ -105,9 +104,11 @@ function loadModel() {
 
       const torax = gltf.scene
       normalizeModel(torax)
-      // Ligera rotación para que se aprecie el volumen 3D
-        torax.rotation.y = THREE.MathUtils.degToRad(-14)
-        torax.rotation.x = THREE.MathUtils.degToRad(2)
+      
+      // MODIFICADO: Cambia estos ángulos para rotarlo más o menos a tu gusto
+      torax.rotation.y = THREE.MathUtils.degToRad(-30) // Rotación horizontal
+      torax.rotation.x = THREE.MathUtils.degToRad(10)  // Inclinación vertical
+
       scene?.add(torax)
       model = torax
 
@@ -297,28 +298,6 @@ onBeforeUnmount(dispose)
 <template>
   <div class="w-full h-full min-h-[12rem] relative overflow-hidden">
     <div ref="container" class="absolute inset-0" />
-
-    <!-- Cruz -->
-    <div
-      class="absolute inset-0 pointer-events-none z-10"
-      aria-hidden="true"
-    >
-      <!-- Línea vertical -->
-      <div
-        class="absolute top-0 bottom-0 left-1/2 w-px -translate-x-1/2 bg-black"
-      />
-
-      <!-- Línea horizontal -->
-      <div
-        class="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 bg-black"
-      />
-    </div>
-    <div class="absolute top-2 left-2 z-30 rounded bg-black/70 px-3 py-2 font-mono text-xs text-white" >
-        X: {{ debugPosition.x.toFixed(3) }}<br>
-        Y: {{ debugPosition.y.toFixed(3) }}<br>
-        Z: {{ debugPosition.z.toFixed(3) }}
-    </div>
-
     <div
       v-if="status !== 'ready'"
       class="absolute inset-0 z-20 flex items-center justify-center px-3 text-center text-s"
