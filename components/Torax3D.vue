@@ -117,8 +117,8 @@ function loadModel() {
         controls.enableDamping = true
         controls.enableZoom = false
         controls.enablePan = false
-        controls.autoRotate = false
-        controls.autoRotateSpeed = false
+        controls.autoRotate = true
+        controls.autoRotateSpeed = 0.6
       }
 
       fitCamera()
@@ -183,6 +183,8 @@ function init() {
 function animate() {
   if (disposed)
     return
+
+controls?.update()
 
   animationId = requestAnimationFrame(animate)
 

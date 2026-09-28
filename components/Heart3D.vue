@@ -101,7 +101,7 @@ function loadModel() {
         controls.enableZoom = false
         controls.enablePan = false
         controls.autoRotate = true
-        controls.autoRotateSpeed = 1.5
+        controls.autoRotateSpeed = 1
       }
 
       fitCamera()
