@@ -190,7 +190,7 @@ A computational model of the system to be replicated, which in our case is all o
 
 ---
 
-# A physical twin and its digital twin
+# Digital Twins in a nutshell
 <div class="flex items-center justify-center gap-6 mt-2">
 
   <div v-click="1" class="text-center">
@@ -220,7 +220,7 @@ A computational model of the system to be replicated, which in our case is all o
 
 </div>
 
-<div v-click.fade-in="5" class="text-center text-lg mt-4 opacity-90">
+<div v-click.fade-in="5" class="text-center text-xl mt-4 opacity-90">
 A virtual representation of a human or system, <b class="text-amber-500">constantly updated with real data</b>, to make better decisions.
 </div>
 
@@ -333,16 +333,16 @@ layout: section
 
 # Old roots, young technology
 
-<p class="opacity-70 -mt-2">
+<p class="opacity-70 text-xl">
   Its origins go back decades, yet it is a relatively recent field.
 </p>
 
-<div class="mt-8 flex flex-col gap-5 text-lg">
+<div class="mt-8 flex flex-col gap-5 text-xl">
   <!-- Construction -->
   <div v-click.fade="1">
     <div class="flex justify-between">
       <span> Construction</span>
-      <span class="opacity-60 text-sm">
+      <span class="opacity-60 text-xl">
         simulate accidents · control processes in real time
       </span>
     </div>
@@ -356,7 +356,7 @@ layout: section
   <div v-click.fade="1">
     <div class="flex justify-between">
       <span> Aeronautics</span>
-      <span class="opacity-60 text-sm">
+      <span class="opacity-60 text-xl">
         predict failures without taking risks
       </span>
     </div>
@@ -370,7 +370,7 @@ layout: section
   <div v-click.fade="1">
     <div class="flex justify-between">
       <span> Automotive</span>
-      <span class="opacity-60 text-sm">
+      <span class="opacity-60 text-xl">
         industrial sector: where it is most developed
       </span>
     </div>
@@ -384,7 +384,7 @@ layout: section
   <div v-click.fade="2">
     <div class="flex justify-between">
       <span> Healthcare</span>
-      <span class="text-amber-500 text-sm font-bold">
+      <span class="text-amber-500 text-xl font-bold">
         still at an early stage
       </span>
     </div>
@@ -527,13 +527,14 @@ layout: section
     <div class="absolute -left-10 top-1 w-6 h-6 rounded-full bg-amber-500"></div>
     <div v-click.fade class="text-3xl font-800 text-amber-500">2025 · Digital Twins</div>
     <ul v-click.fade-in class="text-lg mt-2 opacity-90">
-      <li>Work with the <b>Made of Genes</b></li>
+      <li>Work with the <b>Made of Genes</b> and <b>Genomcore</b> </li>
       <li>A smaller-scale digital twin of <b>each football player</b></li>
       <li>Built from molecular data (<i>sportnomics</i>) and AI</li>
       <li>Goals: prevent injuries, maximise performance, extend athletic longevity</li>
     </ul>
   </div>
 </div>
+
 ---
 layout: section
 ---
@@ -555,20 +556,20 @@ layout: section
     v-click.fade-in
     class="pancreas-card pancreas-green p-5 rounded-xl w-64"
   >
-    <div class="text-xs opacity-60">PART 1</div>
-    <div class="text-4xl">🩸</div>
+    <div class="text-xl opacity-60">PART 1</div>
+    <div class="text-4xl"></div>
     <b>Measures glucose</b>
-    <div class="text-sm opacity-70">continuously</div>
+    <div class="text-xl opacity-70">continuously</div>
   </div>
-  <div v-click class="text-3xl">→</div>
+  <div v-click class="text-6xl"></div>
   <div
     v-click.fade-in
     class="pancreas-card pancreas-amber p-5 rounded-xl w-64"
   >
-    <div class="text-xs opacity-60">PART 2</div>
-    <div class="text-4xl">💉</div>
+    <div class="text-xl opacity-60">PART 2</div>
+    <div class="text-4xl"></div>
     <b>Infuses insulin</b>
-    <div class="text-sm opacity-70">syringe device, only when needed</div>
+    <div class="text-xl opacity-70">syringe device, only when needed</div>
   </div>
 </div>
 
@@ -626,10 +627,10 @@ layout: section
   >
     Algorithmically smart CGM sensor
   </div>
-  <div style="grid-area:1/4" class="inp">
+  <div v-click="3" style="grid-area:1/4" class="inp">
     BG references<br>(e.g. SMBG) ↓
   </div>
-  <div style="grid-area:1/5" class="inp dashed">
+  <div v-click="4" style="grid-area:1/5" class="inp dashed">
     Other information, e.g. Meal, insulin, exercise<br>
     (if available) ↓
   </div>
@@ -640,19 +641,20 @@ layout: section
   >
     Patient
   </div>
-  <div
+  <div v-click.fade-in="1"
     class="st nx"
     style="grid-area:2/2;background:#111;color:#fff"
   >
     CGM sensor
   </div>
-  <div class="st nx" style="grid-area:2/3">
+  <div v-click.fade-in="2" class="st nx" style="grid-area:2/3">
     Denoising module
   </div>
-  <div class="st nx" style="grid-area:2/4">
+  <div v-click.fade-in="3"
+class="st nx" style="grid-area:2/4">
     Enhancement module
   </div>
-  <div class="st" style="grid-area:2/5">
+  <div v-click.fade-in="4" class="st" style="grid-area:2/5">
     Prediction module
   </div>
   <div v-click style="grid-area:3/2">
@@ -684,15 +686,11 @@ layout: section
 </div>
 <!-- WHAT'S NEW -->
 <div
-  v-click
+  v-click.fade-in
   class="whats-new"
 >
-  <div class="whats-icon">✦</div>
   <div>
-    <div class="whats-title">
-      What's new
-    </div>
-    <div class="whats-text">
+    <div class="whats-text text-xl">
       The artificial pancreas evolves from a
       <b>reactive</b> measuring system to a
       <b>predictive and personalised physiological model</b>
@@ -864,6 +862,21 @@ layout: section
 }
 
 </style>
+
+---
+
+## Results
+
+<img
+  src="/public/sensor-glucose-results.png"
+  class="center"
+  alt="Results for the artificial pancreas showing sensor glucose measurements"
+  style="display: block; margin: 0 auto; max-width: 90%; max-height: 35vh; object-fit: contain;"
+/>
+
+<p class="timeline-caption center">
+  Fig. 4 · Boxplots of selected comparison indexes. Source: Journal of Diabetes Science and Technology.
+</p>
 
 ---
 
@@ -1223,36 +1236,38 @@ layout: section
 ---
 
 # A bodybuilder's sudden collapse
- 
-<div class="grid grid-cols-2 gap-8 mt-4 text-center">
-  <div v-click.fade class="p-4 rounded-xl bg-emerald-500/15 border border-emerald-500/50">
-    <div class="text-xs uppercase tracking-widest opacity-60">What we see</div>
-    <div class="text-6xl my-1">💪</div>
-    <b>Peak physical condition</b>
+
+<div class="h-full flex flex-col justify-center">
+  <div class="grid grid-cols-2 gap-8 mt-4 text-center">
+    <div v-click.fade class="p-4 rounded-xl bg-emerald-500/15 border border-emerald-500/50">
+      <div class="text-xs uppercase tracking-widest opacity-60">What we see</div>
+      <div class="text-6xl my-1"></div>
+      <b>Peak physical condition</b>
+    </div>
+    <div v-click.fade class="p-4 rounded-xl bg-red-500/15 border border-red-500/60 alarm fade-glow-red">
+      <div class="text-xs uppercase tracking-widest opacity-60">What was hidden</div>
+      <div class="text-6xl my-1"></div>
+      <b>An undetected cardiac condition</b>
+    </div>
   </div>
-  <div v-click.fade class="p-4 rounded-xl bg-red-500/15 border border-red-500/60 alarm fade-glow-red">
-    <div class="text-xs uppercase tracking-widest opacity-60">What was hidden</div>
-    <div class="text-6xl my-1">❤️‍🔥</div>
-    <b>An undetected cardiac condition</b>
+  <div class="grid grid-cols-3 gap-4 mt-5 text-center text-sm">
+    <div v-click.fade class="p-3 rounded-lg bg-gray-500/15 fade-glow">
+      <b>Looking fit ≠ a healthy heart</b>
+    </div>
+    <div v-click.fade class="p-3 rounded-lg bg-gray-500/15 fade-glow">
+      <b>Extreme exercise on a diseased heart can be lethal</b>
+    </div>
+    <div v-click.fade class="p-3 rounded-lg bg-gray-500/15 fade-glow">
+      <b>Simple, cheap prevention: an ECG</b>
+    </div>
   </div>
-</div>
-<div class="grid grid-cols-3 gap-4 mt-5 text-center text-sm">
-  <div v-click.fade class="p-3 rounded-lg bg-gray-500/15 fade-glow">
-    <b>Looking fit ≠ a healthy heart</b>
+  <div
+    v-click.fade
+    class="reflection-box mt-5 p-3 rounded-lg bg-amber-500 text-black text-center font-bold"
+  >
+    Cardiac Digital Twins could predict fatal arrhythmias
+    <i>in silico</i>, before they happen in real life.
   </div>
-  <div v-click.fade class="p-3 rounded-lg bg-gray-500/15 fade-glow">
-    <b>Extreme exercise on a diseased heart can be lethal</b>
-  </div>
-  <div v-click.fade class="p-3 rounded-lg bg-gray-500/15 fade-glow">
-    <b>Simple, cheap prevention: an ECG</b>
-  </div>
-</div>
-<div
-  v-click.fade
-  class="reflection-box mt-5 p-3 rounded-lg bg-amber-500 text-black text-center font-bold"
->
-  Cardiac Digital Twins could predict fatal arrhythmias
-  <i>in silico</i>, before they happen in real life.
 </div>
 
 <style>
@@ -1308,7 +1323,7 @@ layout: section
     <div class="text-3xl">
       <b class="mt-1 text-lg align-middle">Biological knowledge</b>
     </div>
-    <p class="opacity-80">
+    <p class="opacity-80 text-xl">
       We still have incomplete knowledge of human biology.
     </p>
   </div>
@@ -1316,24 +1331,24 @@ layout: section
     <div class="text-3xl">
       <b class="text-lg align-middle">Data</b>
     </div>
-    <p class="opacity-80">
+    <p class="opacity-80 text-xl">
       Enough quantity <i>and</i> quality: heterogeneous sources, and continuous
-      non-invasive collection is still in development or too noisy.
+      non-invasive development or too noisy.
     </p>
   </div>
   <div v-click.fade class="wall-card wall-amber p-4 rounded-xl bg-amber-500/15 border-l-4 border-amber-500">
     <div class="text-3xl">
-      <b class="text-lg align-middle">Computing</b>
+      <b class="text-xl align-middle">Computing</b>
     </div>
-    <p class="opacity-80">
+    <p class="opacity-80 text-xl">
       Heavy image-processing load, a segmentation bottleneck and a lack of automation.
     </p>
   </div>
   <div v-click.fade class="wall-card wall-red p-4 rounded-xl bg-red-500/15 border-l-4 border-red-500">
     <div class="text-3xl">
-      <b class="text-lg align-middle">Privacy & security</b>
+      <b class="text-xl align-middle">Privacy & security</b>
     </div>
-    <p class="opacity-80">
+    <p class="opacity-80 text-xl">
       Regulation is needed. Who controls the twin? Who owns it? What can be done with it?
     </p>
   </div>
