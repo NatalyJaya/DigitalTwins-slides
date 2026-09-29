@@ -16,7 +16,6 @@ duration: 35min
 <div class="flex flex-col items-center gap-6">
  
    <h1>Digital Twins - Overview</h1>
-    <img src="https://placehold.co/400x400?text=Photo" class="w-28 h-28 rounded-full object-cover shadow-xl border-4 border-emerald-500" />
     <p class="opacity-70 text-xl"> Nataly Jaya · UdL</p>
   
 
@@ -865,7 +864,7 @@ class="st nx" style="grid-area:2/4">
 
 ---
 
-## Results
+# Results
 
 <img
   src="/public/sensor-glucose-results.png"
@@ -884,7 +883,14 @@ class="st nx" style="grid-area:2/4">
  
 <div class="grid grid-cols-2 gap-10 items-center mt-4">
   <div class="text-center">
-    <div class="beat text-9xl">❤️</div>
+    <div class="beat text-s">
+    <img
+  src="/public/corazon.png"
+  class="center"
+  alt="Results for the artificial pancreas showing sensor glucose measurements"
+  style="display: block; margin: 0 auto; max-width: 60%; max-height: 25vh; object-fit: contain;"
+/>
+    </div>
     <svg viewBox="0 0 240 60" class="w-full">
       <path
         class="ecg"
@@ -989,7 +995,7 @@ class="st nx" style="grid-area:2/4">
     0 0 18px rgba(245, 158, 11, 0.18);
 }
 </style>
- 
+
 ---
 
 # ① Anatomical Twinning
@@ -1028,8 +1034,7 @@ class="st nx" style="grid-area:2/4">
       <div class="overflow-hidden rounded mb-6 h-58 bg-black/20">
         <Heart3D />
       </div>
-      <b class="block mt-1 text-3xl text-emerald-400">
-        3D Reconstruction
+      <b class="block mt-1 text-3xl text-emerald-400">Meshing
       </b>
     </div>
   </div>
@@ -1066,45 +1071,65 @@ class="st nx" style="grid-area:2/4">
 ---
 
 # ② Functional Twinning
- 
-<div class="grid grid-cols-3 gap-6 mt-4 text-center">
-  <div v-click.fade-in class="functional-card functional-blue p-4 rounded-xl bg-blue-500/15 border border-blue-500/40">
-    <div class="text-4xl"></div>
-    <b class="block mt-1">Reference frame</b>
-    <p class="text-sm opacity-70">A standard coordinate system laid over each patient's anatomy, like fitting the same map grid to every heart.</p>
+
+<div class="flex items-center justify-center gap-3 mt-8">
+
+  <!-- REFERENCE FRAME -->
+
+  <div v-click.fade-in="1" class="functional-card functional-blue p-5 rounded-xl bg-blue-500/15 border border-blue-500/40 text-center w-76">
+    <div class="text-4xl mb-"></div>
+    <b class="text-xl">Reference frame</b>
+    <div class="mt-3 text-2xl font-mono">𝓧</div>
+    <p class="text-xl opacity-70 mt-2">
+      UVC + UTC<br>
+      <span class="text-blue-300">patient-independent coordinates</span>
+    </p>
   </div>
-  <div v-click.fade-in class="functional-card functional-purple p-4 rounded-xl bg-purple-500/15 border border-purple-500/40">
-    <div class="text-4xl"></div>
-    <b class="block mt-1">Feature vector</b>
-    <p class="text-sm opacity-70">The heart's "ID card": its geometry and anatomy as numbers the model can process.</p>
+  <div v-click.fade-in="2" class=" text-3xl opacity-50">→</div>
+  <!-- FEATURE VECTOR -->
+  <div v-click.fade-in="2" class="functional-card functional-purple p-5 rounded-xl bg-purple-500/15 border border-purple-500/40 text-center w-56">
+    <div class="text-4xl mb-2"></div>
+    <b class="text-xl">Feature vector</b>
+    <div class="mt-3 text-2xl font-mono">ω</div>
+    <p class="text-xl opacity-70 mt-2">
+      <span class="font-mono">ω<sub>QRS</sub></span> + 
+      <span class="font-mono">ω<sub>T</sub></span><br>
+      <span class="text-purple-300">18 parameters</span>
+    </p>
   </div>
-  <div v-click.fade-in class="functional-card functional-amber p-4 rounded-xl bg-amber-500/15 border border-amber-500/40">
-    <div class="text-4xl"></div>
-    <b class="block mt-1">Forward ECG model</b>
-    <p class="text-sm opacity-70">Maths that predicts the ECG the patient <i>should</i> show: y<sub>s</sub>(t) = f(ω, t)</p>
+
+  <div v-click.fade-in="3" class="text-3xl opacity-50">→</div>
+
+  <!-- RELF -->
+
+  <div v-click.fade-in="3" class="functional-card functional-amber p-5 rounded-xl bg-amber-500/15 border border-amber-500/40 text-center w-56">
+    <div class="text-4xl mb-2"></div>
+    <b class="text-lg">Forward ECG Model </b>
+    <div class="mt-3 text-xl font-mono">f(ω,t)</div>
+    <p class="text-xl opacity-70 mt-2">
+      Reaction–Eikonal<br>
+      + Lead Field
+    </p>
   </div>
 </div>
-<div v-click.fade-in class="functional-result mt-6 p-4 rounded-xl border border-dashed border-gray-500/60 text-center">
-  <div class="flex items-center justify-center gap-4 text-sm">
-    <div>
-      Real 12-lead ECG<br>y<sub>m</sub>(t)
-      <svg viewBox="0 0 120 40" class="w-32">
-        <path class="ecg2" d="M0 20 H20 l4 -5 l4 5 H45 l3 5 l4 -25 l4 30 l3 -10 H85 q8 -12 17 0 H120"
-          fill="none" stroke="#22c55e" stroke-width="2"/>
-      </svg>
+<div v-click.fade-in="4" class="mt-6 flex items-center justify-center">
+  <div class="px-6 py-2 rounded-xl border border-gray-500/50 bg-gray-500/10 text-center">
+    <div class="text-xl opacity-70">Measured</div>
+    <div class="text-xl font-mono mt-1">
+      y<sub>m</sub>(t)
     </div>
-    <div class="text-2xl">⇄</div>
-    <div>
-      Simulated ECG<br>y<sub>s</sub>(t)
-      <svg viewBox="0 0 120 40" class="w-32">
-        <path class="ecg2" d="M0 20 H20 l4 -5 l4 5 H45 l3 5 l4 -25 l4 30 l3 -10 H85 q8 -12 17 0 H120"
-          fill="none" stroke="#ef4444" stroke-width="2"/>
-      </svg>
+    <div class="text-xl opacity-60 mt-1">
+      patient ECG
     </div>
-    <div class="text-2xl">→</div>
-    <div class="text-left">
-      Compare the error <b>L</b>(y<sub>m</sub>, y<sub>s</sub>)<br>
-      <span class="tune">adjust parameters and repeat</span><br>
+  </div>
+<div class="text-3xl mx-5">⇄</div>
+<div class="px-6 py-3 rounded-xl border border-gray-500/50 bg-gray-500/10 text-center">
+    <div class="text-xl opacity-70">Forward simulation</div>
+    <div class="text-xl font-mono mt-1">
+      ω → y<sub>s</sub>(t)
+    </div>
+    <div class="text-xl opacity-60 mt-1">
+      12-lead ECG
     </div>
   </div>
 </div>
@@ -1122,104 +1147,59 @@ class="st nx" style="grid-area:2/4">
 }
 
 @keyframes blueFunctionalGlow {
-  0% {
-    box-shadow: 0 0 0 rgba(59,130,246,0);
-  }
+  0% { box-shadow: 0 0 0 rgba(59,130,246,0); }
   40% {
     box-shadow:
       0 0 18px rgba(59,130,246,.55),
       0 0 35px rgba(59,130,246,.25);
   }
-  100% {
-    box-shadow:
-      0 0 6px rgba(59,130,246,.22);
-  }
+  100% { box-shadow: 0 0 6px rgba(59,130,246,.22); }
 }
 
-/* Purple */
 .functional-purple {
   animation-name: purpleFunctionalGlow;
 }
 
 @keyframes purpleFunctionalGlow {
-  0% {
-    box-shadow: 0 0 0 rgba(168,85,247,0);
-  }
+  0% { box-shadow: 0 0 0 rgba(168,85,247,0); }
   40% {
     box-shadow:
       0 0 18px rgba(168,85,247,.55),
       0 0 35px rgba(168,85,247,.25);
   }
-  100% {
-    box-shadow:
-      0 0 6px rgba(168,85,247,.22);
-  }
+  100% { box-shadow: 0 0 6px rgba(168,85,247,.22); }
 }
 
-/* Amber */
 .functional-amber {
   animation-name: amberFunctionalGlow;
 }
 
 @keyframes amberFunctionalGlow {
-  0% {
-    box-shadow: 0 0 0 rgba(245,158,11,0);
-  }
+  0% { box-shadow: 0 0 0 rgba(245,158,11,0); }
   40% {
     box-shadow:
       0 0 18px rgba(245,158,11,.60),
       0 0 35px rgba(245,158,11,.28);
   }
-  100% {
-    box-shadow:
-      0 0 6px rgba(245,158,11,.22);
-  }
+  100% { box-shadow: 0 0 6px rgba(245,158,11,.22); }
 }
 
-
-.functional-result {
-  animation: resultGlow .8s ease-out forwards;
-}
-
-@keyframes resultGlow {
-  0% {
-    box-shadow: 0 0 0 rgba(255,255,255,0);
-  }
-  40% {
-    box-shadow:
-      0 0 16px rgba(255,255,255,.20),
-      0 0 30px rgba(255,255,255,.08);
-  }
-  100% {
-    box-shadow:
-      0 0 5px rgba(255,255,255,.08);
-  }
-}
-
-
-.ecg2 {
-  stroke-dasharray: 260;
-  stroke-dashoffset: 260;
-  animation: draw2 2s linear infinite;
-}
-
-@keyframes draw2 {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-.tune {
-  display: inline-block;
-  animation: wob 1s ease-in-out infinite;
-}
-
-@keyframes wob {
-  50% {
-    transform: rotate(-12deg);
-  }
-}
 </style>
+
+---
+
+# Results
+
+<img
+  src="/public/fig-5.png"
+  class="center"
+  alt="Results for the artificial pancreas showing sensor glucose measurements"
+  style="display: block; margin: 0 auto; max-width: 90%; max-height: 35vh; object-fit: contain;"
+/>
+
+<p class="timeline-caption center">
+  Fig. 5 · HPS including fascicular locations, activation map and repolarization map for the baseline parameter vectors. Source: A Framework for the generation of digital twins of cardiac
+</p>
 
 ---
 layout: section
