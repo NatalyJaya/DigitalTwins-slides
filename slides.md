@@ -1514,3 +1514,14 @@ class: text-center
   animation: glowAmber 1.2s ease-out forwards;
 }
 </style>
+
+
+---
+layout: section
+---
+
+<!-- ============ 07 CONCLUSION ============ -->
+
+<div class="text-7xl font-800 bg-gradient-to-r from-emerald-500 to-amber-500 bg-clip-text text-transparent leading-none"></div>
+
+# THANK YOU FOR YOUR ATTENTION!
